@@ -17,6 +17,14 @@ public class AnimalService {
     @Autowired
     public AnimalService(AnimalRep animalRep) {
         this.animalRep = animalRep;
+//        Animal animal = new Animal();
+//        animal.setSex("Male");
+//        animal.setAge(3);
+//        animal.setRace("Cat");
+//        animal.setDetails("Wild");
+//
+//        animalRep.save(animal);
+
     }
 
     public List<Animal> findAll(){
@@ -28,6 +36,26 @@ public class AnimalService {
         return animals.stream()
                 .filter(anim -> anim.getSex().equals(sex))
                 .collect(Collectors.toList());
+    }
+
+    public Animal findById(Long id){
+        return animalRep.findById(id).orElseThrow(() -> new NullPointerException("Does not exist!!"));
+    }
+
+    public void save(Animal animal){
+        animalRep.save(animal);
+    }
+
+    public void delete(Animal animal){
+        animalRep.delete(animal);
+    }
+
+    public void deleteById(Long id){
+        animalRep.deleteById(id);
+    }
+
+    public void deleteAll(){
+        animalRep.deleteAll();
     }
 
 

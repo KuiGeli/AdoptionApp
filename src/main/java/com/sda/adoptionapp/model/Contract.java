@@ -9,7 +9,7 @@ public class Contract {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_adoption", referencedColumnName = "id")
     private Adoption adoption;
 

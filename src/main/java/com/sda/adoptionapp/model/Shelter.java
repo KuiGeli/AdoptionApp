@@ -17,10 +17,10 @@ public class Shelter {
     @Column
     private String address;
 
-    @OneToMany(mappedBy = "shelter")
+    @OneToMany(mappedBy = "shelter", fetch = FetchType.LAZY)
     List<Animal> animals = new ArrayList<>();
 
-    @OneToMany(mappedBy = "shelter")
+    @OneToMany(mappedBy = "shelter", fetch = FetchType.LAZY)
     List<User> users = new ArrayList<>();
 
     public Long getId() {

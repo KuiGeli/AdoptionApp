@@ -16,7 +16,7 @@ public class Donation {
     @Column
     private String details;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_user_donation")
     User user;
 
@@ -51,4 +51,6 @@ public class Donation {
     public void setDetails(String details) {
         this.details = details;
     }
+
+
 }

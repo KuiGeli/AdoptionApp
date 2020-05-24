@@ -1,4 +1,7 @@
 package com.sda.adoptionapp.model;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -6,11 +9,17 @@ public class Animal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "id_shelter_animal")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_shelter")
+    @JsonIgnore
     Shelter shelter;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idUser")
+    @JsonIgnore
+    User user;
 
     @Column
     private int age;
@@ -27,11 +36,11 @@ public class Animal {
     @Column
     private String photo;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -75,5 +84,11 @@ public class Animal {
         this.details = details;
     }
 
+    public String getPhoto() {
+        return photo;
+    }
 
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
 }

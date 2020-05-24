@@ -15,11 +15,15 @@ public class ShelterService {
     @Autowired
     public ShelterService(ShelterRep shelterRep) {
         this.shelterRep = shelterRep;
+
+        Shelter shelter = new Shelter();
+        shelter.setName("Shelter");
+
+
     }
 
-
     public Shelter findById(Long id){
-        return shelterRep.findById(id).get();
+        return shelterRep.findById(id).orElseThrow(() -> new NullPointerException("No Shelter found"));
     }
 
     public Shelter findByName(String name){
@@ -29,12 +33,20 @@ public class ShelterService {
                 .findFirst().get();
     }
 
+    public List<Shelter> findAll(){
+        return (List<Shelter>) shelterRep.findAll();
+    }
+
     public void deleteById(Long id){
         shelterRep.deleteById(id);
     }
 
     public void deleteByEntity(Shelter shelter){
         shelterRep.delete(shelter);
+    }
+
+    public void save(Shelter shelter){
+        shelterRep.save(shelter);
     }
 
 }

@@ -6,6 +6,8 @@ import com.sda.adoptionapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -20,6 +22,16 @@ public class UserController {
     @GetMapping("/findByName/{name}")
     public User findByName(@PathVariable String name){
     return userService.findByName(name);
+    }
+
+    @GetMapping("/findById")
+    public User findById(@RequestParam(name = "id") long id){
+        return userService.findById(id);
+    }
+
+    @GetMapping("/findAll")
+    public List<User> findAll(){
+        return userService.findAll();
     }
 
     @DeleteMapping("/delete/{id}")

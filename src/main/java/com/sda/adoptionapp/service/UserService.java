@@ -1,7 +1,7 @@
 package com.sda.adoptionapp.service;
 
 import com.sda.adoptionapp.model.User;
-import com.sda.adoptionapp.repository.UserRep;
+import com.sda.adoptionapp.repository.user.UserRep;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,13 +32,8 @@ public class UserService {
         }
     }
 
-    public User findById(Long id){
-        Optional<User> userOptional = userRep.findById(id);
-        if(userOptional.isPresent()){
-            return userOptional.get();
-        }else {
-            throw new NullPointerException("There's no user with this id");
-        }
+    public User findById(long id){
+            return userRep.findById(id).orElseThrow(() -> new NullPointerException("User not found"));
     }
 
     public User findByEmail(String email)throws Exception{
@@ -57,6 +52,10 @@ public class UserService {
 
     public void deleteById(Long id){
         userRep.deleteById(id);
+    }
+
+    public void save(User user){
+        userRep.save(user);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.sda.adoptionapp.repository;
+package com.sda.adoptionapp.repository.user;
 
 import com.sda.adoptionapp.model.User;
 import org.springframework.data.repository.CrudRepository;
