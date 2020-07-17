@@ -24,7 +24,7 @@ public class AnimalController {
 
     @GetMapping("/sayhi/{hi}")
     public String sayHi(@PathVariable String hi) {
-        return hi + " you fucking ANIMAL!!!";
+        return hi + " Hello";
     }
 
     @GetMapping("/findAll")
